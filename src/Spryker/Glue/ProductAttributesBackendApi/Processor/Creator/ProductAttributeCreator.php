@@ -44,13 +44,6 @@ class ProductAttributeCreator implements ProductAttributeCreatorInterface
      */
     protected ProductAttributeExpanderInterface $productAttributeExpander;
 
-    /**
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToProductAttributeFacadeInterface $productAttributeFacade
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Processor\Builder\ProductAttributeRestResponseBuilderInterface $productAttributeRestResponseBuilder
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Processor\Mapper\ProductAttributeMapperInterface $productAttributeMapper
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Processor\Reader\ProductAttributeReaderInterface $productAttributeReader
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Processor\Expander\ProductAttributeExpanderInterface $productAttributeExpander
-     */
     public function __construct(
         ProductAttributesBackendApiToProductAttributeFacadeInterface $productAttributeFacade,
         ProductAttributeRestResponseBuilderInterface $productAttributeRestResponseBuilder,
@@ -65,12 +58,6 @@ class ProductAttributeCreator implements ProductAttributeCreatorInterface
         $this->productAttributeExpander = $productAttributeExpander;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttribute(
         RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer,
         GlueRequestTransfer $glueRequestTransfer

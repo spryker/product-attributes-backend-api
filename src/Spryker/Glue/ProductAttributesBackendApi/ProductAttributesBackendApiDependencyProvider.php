@@ -27,11 +27,6 @@ class ProductAttributesBackendApiDependencyProvider extends AbstractBundleDepend
      */
     public const FACADE_LOCALE = 'FACADE_LOCALE';
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     public function provideBackendDependencies(Container $container): Container
     {
         $container = parent::provideBackendDependencies($container);
@@ -41,11 +36,6 @@ class ProductAttributesBackendApiDependencyProvider extends AbstractBundleDepend
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addLocaleFacade(Container $container): Container
     {
         $container->set(static::FACADE_LOCALE, function (Container $container) {
@@ -55,11 +45,6 @@ class ProductAttributesBackendApiDependencyProvider extends AbstractBundleDepend
         return $container;
     }
 
-    /**
-     * @param \Spryker\Glue\Kernel\Backend\Container $container
-     *
-     * @return \Spryker\Glue\Kernel\Backend\Container
-     */
     protected function addProductAttributeFacade(Container $container): Container
     {
         $container->set(static::FACADE_PRODUCT_ATTRIBUTE, function (Container $container) {

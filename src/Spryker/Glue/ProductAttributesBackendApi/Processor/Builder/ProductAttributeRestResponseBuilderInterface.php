@@ -13,36 +13,17 @@ use Generated\Shared\Transfer\ProductManagementAttributeTransfer;
 
 interface ProductAttributeRestResponseBuilderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer $productManagementAttributeCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributesCollectionRestResponse(
         ProductManagementAttributeCollectionTransfer $productManagementAttributeCollectionTransfer
     ): GlueResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributesRestResponse(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
     ): GlueResponseTransfer;
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributeKeyExistsErrorRestResponse(): GlueResponseTransfer;
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributeKeyIsNotProvidedErrorRestResponse(): GlueResponseTransfer;
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributeNotFoundErrorRestResponse(): GlueResponseTransfer;
 }

@@ -27,10 +27,6 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
      */
     protected ProductAttributeRestResponseBuilderInterface $productAttributeRestResponseBuilder;
 
-    /**
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToProductAttributeFacadeInterface $productAttributeFacade
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Processor\Builder\ProductAttributeRestResponseBuilderInterface $productAttributeRestResponseBuilder
-     */
     public function __construct(
         ProductAttributesBackendApiToProductAttributeFacadeInterface $productAttributeFacade,
         ProductAttributeRestResponseBuilderInterface $productAttributeRestResponseBuilder
@@ -39,11 +35,6 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
         $this->productAttributeRestResponseBuilder = $productAttributeRestResponseBuilder;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function getProductAttributeCollection(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
     {
         $productManagementAttributeCollectionTransfer = $this->productAttributeFacade->getProductManagementAttributeCollection(
@@ -54,11 +45,6 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
         return $this->productAttributeRestResponseBuilder->createProductAttributesCollectionRestResponse($productManagementAttributeCollectionTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\GlueRequestTransfer $glueRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function getProductAttribute(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
     {
         if (!$glueRequestTransfer->getResource() || !$glueRequestTransfer->getResource()->getId()) {
@@ -74,11 +60,6 @@ class ProductAttributeReader implements ProductAttributeReaderInterface
         return $this->productAttributeRestResponseBuilder->createProductAttributesRestResponse($productManagementAttributeTransfer);
     }
 
-    /**
-     * @param string $key
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer|null
-     */
     public function findProductAttributeByKey(string $key): ?ProductManagementAttributeTransfer
     {
         $productManagementAttributeCollectionTransfer = $this->productAttributeFacade->getProductManagementAttributeCollection(

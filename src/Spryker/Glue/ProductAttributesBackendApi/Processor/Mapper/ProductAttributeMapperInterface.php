@@ -12,23 +12,11 @@ use Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer;
 
 interface ProductAttributeMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     * @param \Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer
-     */
     public function mapProductManagementAttributeTransferToRestProductAttributesBackendAttributesTransfer(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer,
         RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer
     ): RestProductAttributesBackendAttributesTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     public function mapRestProductAttributesBackendAttributesTransferToProductManagementAttributeTransfer(
         RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer,
         ProductManagementAttributeTransfer $productManagementAttributeTransfer

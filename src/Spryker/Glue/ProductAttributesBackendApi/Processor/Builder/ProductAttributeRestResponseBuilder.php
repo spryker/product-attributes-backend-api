@@ -24,19 +24,11 @@ class ProductAttributeRestResponseBuilder implements ProductAttributeRestRespons
      */
     protected ProductAttributeMapperInterface $productAttributeMapper;
 
-    /**
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Processor\Mapper\ProductAttributeMapperInterface $productAttributeMapper
-     */
     public function __construct(ProductAttributeMapperInterface $productAttributeMapper)
     {
         $this->productAttributeMapper = $productAttributeMapper;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer $productManagementAttributeCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributesCollectionRestResponse(
         ProductManagementAttributeCollectionTransfer $productManagementAttributeCollectionTransfer
     ): GlueResponseTransfer {
@@ -62,11 +54,6 @@ class ProductAttributeRestResponseBuilder implements ProductAttributeRestRespons
         return $glueResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributesRestResponse(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
     ): GlueResponseTransfer {
@@ -75,9 +62,6 @@ class ProductAttributeRestResponseBuilder implements ProductAttributeRestRespons
         );
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributeKeyExistsErrorRestResponse(): GlueResponseTransfer
     {
         return (new GlueResponseTransfer())
@@ -90,9 +74,6 @@ class ProductAttributeRestResponseBuilder implements ProductAttributeRestRespons
             );
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributeKeyIsNotProvidedErrorRestResponse(): GlueResponseTransfer
     {
         return (new GlueResponseTransfer())
@@ -105,9 +86,6 @@ class ProductAttributeRestResponseBuilder implements ProductAttributeRestRespons
             );
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\GlueResponseTransfer
-     */
     public function createProductAttributeNotFoundErrorRestResponse(): GlueResponseTransfer
     {
         return (new GlueResponseTransfer())

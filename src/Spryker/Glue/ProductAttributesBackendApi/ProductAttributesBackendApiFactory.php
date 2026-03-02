@@ -28,9 +28,6 @@ use Spryker\Glue\ProductAttributesBackendApi\Processor\Updater\ProductAttributeU
  */
 class ProductAttributesBackendApiFactory extends AbstractBackendApiFactory
 {
-    /**
-     * @return \Spryker\Glue\ProductAttributesBackendApi\Processor\Creator\ProductAttributeCreatorInterface
-     */
     public function createProductAttributeCreator(): ProductAttributeCreatorInterface
     {
         return new ProductAttributeCreator(
@@ -42,33 +39,21 @@ class ProductAttributesBackendApiFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\ProductAttributesBackendApi\Processor\Builder\ProductAttributeRestResponseBuilderInterface
-     */
     public function createProductAttributeRestResponseBuilder(): ProductAttributeRestResponseBuilderInterface
     {
         return new ProductAttributeRestResponseBuilder($this->createProductAttributeMapper());
     }
 
-    /**
-     * @return \Spryker\Glue\ProductAttributesBackendApi\Processor\Mapper\ProductAttributeMapperInterface
-     */
     public function createProductAttributeMapper(): ProductAttributeMapperInterface
     {
         return new ProductAttributeMapper();
     }
 
-    /**
-     * @return \Spryker\Glue\ProductAttributesBackendApi\Processor\Expander\ProductAttributeExpanderInterface
-     */
     public function createProductAttributeExpander(): ProductAttributeExpanderInterface
     {
         return new ProductAttributeExpander($this->getLocaleFacade());
     }
 
-    /**
-     * @return \Spryker\Glue\ProductAttributesBackendApi\Processor\Updater\ProductAttributeUpdaterInterface
-     */
     public function createProductAttributeUpdater(): ProductAttributeUpdaterInterface
     {
         return new ProductAttributeUpdater(
@@ -80,9 +65,6 @@ class ProductAttributesBackendApiFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\ProductAttributesBackendApi\Processor\Reader\ProductAttributeReaderInterface
-     */
     public function createProductAttributeReader(): ProductAttributeReaderInterface
     {
         return new ProductAttributeReader(
@@ -91,17 +73,11 @@ class ProductAttributesBackendApiFactory extends AbstractBackendApiFactory
         );
     }
 
-    /**
-     * @return \Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToProductAttributeFacadeInterface
-     */
     public function getProductAttributeFacade(): ProductAttributesBackendApiToProductAttributeFacadeInterface
     {
         return $this->getProvidedDependency(ProductAttributesBackendApiDependencyProvider::FACADE_PRODUCT_ATTRIBUTE);
     }
 
-    /**
-     * @return \Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToLocaleFacadeInterface
-     */
     public function getLocaleFacade(): ProductAttributesBackendApiToLocaleFacadeInterface
     {
         return $this->getProvidedDependency(ProductAttributesBackendApiDependencyProvider::FACADE_LOCALE);

@@ -13,38 +13,18 @@ use Generated\Shared\Transfer\ProductManagementAttributeTransfer;
 
 interface ProductAttributesBackendApiToProductAttributeFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     public function createProductManagementAttribute(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
     ): ProductManagementAttributeTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     public function updateProductManagementAttribute(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
     ): ProductManagementAttributeTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeCollectionTransfer
-     */
     public function getProductManagementAttributeCollection(
         ProductManagementAttributeCriteriaTransfer $productManagementAttributeCriteriaTransfer
     ): ProductManagementAttributeCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return void
-     */
     public function translateProductManagementAttribute(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
     ): void;

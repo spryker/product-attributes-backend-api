@@ -15,12 +15,6 @@ use Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer;
 
 class ProductAttributeMapper implements ProductAttributeMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     * @param \Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer
-     */
     public function mapProductManagementAttributeTransferToRestProductAttributesBackendAttributesTransfer(
         ProductManagementAttributeTransfer $productManagementAttributeTransfer,
         RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer
@@ -32,12 +26,6 @@ class ProductAttributeMapper implements ProductAttributeMapperInterface
         return $restProductAttributesBackendAttributesTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer
-     * @param \Generated\Shared\Transfer\ProductManagementAttributeTransfer $productManagementAttributeTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductManagementAttributeTransfer
-     */
     public function mapRestProductAttributesBackendAttributesTransferToProductManagementAttributeTransfer(
         RestProductAttributesBackendAttributesTransfer $restProductAttributesBackendAttributesTransfer,
         ProductManagementAttributeTransfer $productManagementAttributeTransfer
@@ -91,12 +79,6 @@ class ProductAttributeMapper implements ProductAttributeMapperInterface
         return $localizedProductManagementAttributeKeyTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\LocalizedProductManagementAttributeKeyTransfer $localizedProductManagementAttributeKeyTransfer
-     * @param \Generated\Shared\Transfer\RestLocalizedProductAttributeKeyBackendAttributesTransfer $restLocalizedProductAttributeKeyBackendAttributesTransfer
-     *
-     * @return \Generated\Shared\Transfer\RestLocalizedProductAttributeKeyBackendAttributesTransfer
-     */
     protected function mapLocalizedProductManagementAttributeKeyTransferToRestLocalizedProductAttributeKeyBackendAttributesTransfer(
         LocalizedProductManagementAttributeKeyTransfer $localizedProductManagementAttributeKeyTransfer,
         RestLocalizedProductAttributeKeyBackendAttributesTransfer $restLocalizedProductAttributeKeyBackendAttributesTransfer
@@ -106,12 +88,6 @@ class ProductAttributeMapper implements ProductAttributeMapperInterface
             ->setTranslation($localizedProductManagementAttributeKeyTransfer->getKeyTranslation());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\RestLocalizedProductAttributeKeyBackendAttributesTransfer $restLocalizedProductAttributeKeyBackendAttributesTransfer
-     * @param \Generated\Shared\Transfer\LocalizedProductManagementAttributeKeyTransfer $localizedProductManagementAttributeKeyTransfer
-     *
-     * @return \Generated\Shared\Transfer\LocalizedProductManagementAttributeKeyTransfer
-     */
     protected function mapRestLocalizedProductAttributeKeyBackendAttributesTransferToLocalizedProductManagementAttributeKeyTransfer(
         RestLocalizedProductAttributeKeyBackendAttributesTransfer $restLocalizedProductAttributeKeyBackendAttributesTransfer,
         LocalizedProductManagementAttributeKeyTransfer $localizedProductManagementAttributeKeyTransfer

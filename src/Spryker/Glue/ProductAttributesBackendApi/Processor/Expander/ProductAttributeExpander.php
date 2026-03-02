@@ -18,9 +18,6 @@ class ProductAttributeExpander implements ProductAttributeExpanderInterface
      */
     protected ProductAttributesBackendApiToLocaleFacadeInterface $localeFacade;
 
-    /**
-     * @param \Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToLocaleFacadeInterface $localeFacade
-     */
     public function __construct(ProductAttributesBackendApiToLocaleFacadeInterface $localeFacade)
     {
         $this->localeFacade = $localeFacade;
