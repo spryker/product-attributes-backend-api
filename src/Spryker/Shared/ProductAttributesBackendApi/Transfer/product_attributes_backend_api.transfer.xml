@@ -16,12 +16,12 @@
     </transfer>
 
     <transfer name="RestProductManagementAttributeValueTranslationBackendAttributes" strict="true">
-        <property name="localeName" type="string" description="The name of a locale, such as &quot;en_US&quot; or &quot;de_DE&quot;."/>
+        <property name="localeName" type="string" description="The name of a locale, such as 'en_US' or 'de_DE'."/>
         <property name="translation" type="string" description="A translated string."/>
     </transfer>
 
     <transfer name="RestLocalizedProductAttributeKeyBackendAttributes" strict="true">
-        <property name="localeName" type="string" description="The name of a locale, such as &quot;en_US&quot; or &quot;de_DE&quot;."/>
+        <property name="localeName" type="string" description="The name of a locale, such as 'en_US' or 'de_DE'."/>
         <property name="translation" type="string" description="A translated string."/>
     </transfer>
 
@@ -58,7 +58,7 @@
 
     <transfer name="ProductManagementAttributeValueTranslation">
         <property name="fkLocale" type="int"/>
-        <property name="localeName" type="string" description="The name of a locale, such as &quot;en_US&quot; or &quot;de_DE&quot;."/>
+        <property name="localeName" type="string" description="The name of a locale, such as 'en_US' or 'de_DE'."/>
     </transfer>
 
     <transfer name="GlueRequest">
