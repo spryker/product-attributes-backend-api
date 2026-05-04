@@ -11,11 +11,13 @@ use Generated\Shared\Transfer\GlueRequestTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
 use Generated\Shared\Transfer\ProductManagementAttributeTransfer;
 use Generated\Shared\Transfer\RestProductAttributesBackendAttributesTransfer;
+use Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToLocaleFacadeInterface;
 use Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToProductAttributeFacadeInterface;
 use Spryker\Glue\ProductAttributesBackendApi\Processor\Builder\ProductAttributeRestResponseBuilderInterface;
 use Spryker\Glue\ProductAttributesBackendApi\Processor\Expander\ProductAttributeExpanderInterface;
 use Spryker\Glue\ProductAttributesBackendApi\Processor\Mapper\ProductAttributeMapperInterface;
 use Spryker\Glue\ProductAttributesBackendApi\Processor\Reader\ProductAttributeReaderInterface;
+use Spryker\Glue\ProductAttributesBackendApi\Processor\Validator\ProductAttributeLocaleValidatorInterface;
 
 class ProductAttributeCreator implements ProductAttributeCreatorInterface
 {
@@ -44,18 +46,32 @@ class ProductAttributeCreator implements ProductAttributeCreatorInterface
      */
     protected ProductAttributeExpanderInterface $productAttributeExpander;
 
+    /**
+     * @var \Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToLocaleFacadeInterface
+     */
+    protected ProductAttributesBackendApiToLocaleFacadeInterface $localeFacade;
+
+    /**
+     * @var \Spryker\Glue\ProductAttributesBackendApi\Processor\Validator\ProductAttributeLocaleValidatorInterface
+     */
+    protected ProductAttributeLocaleValidatorInterface $productAttributeLocaleValidator;
+
     public function __construct(
         ProductAttributesBackendApiToProductAttributeFacadeInterface $productAttributeFacade,
         ProductAttributeRestResponseBuilderInterface $productAttributeRestResponseBuilder,
         ProductAttributeMapperInterface $productAttributeMapper,
         ProductAttributeReaderInterface $productAttributeReader,
-        ProductAttributeExpanderInterface $productAttributeExpander
+        ProductAttributeExpanderInterface $productAttributeExpander,
+        ProductAttributeLocaleValidatorInterface $productAttributeLocaleValidator,
+        ProductAttributesBackendApiToLocaleFacadeInterface $localeFacade,
     ) {
         $this->productAttributeFacade = $productAttributeFacade;
         $this->productAttributeRestResponseBuilder = $productAttributeRestResponseBuilder;
         $this->productAttributeMapper = $productAttributeMapper;
         $this->productAttributeReader = $productAttributeReader;
         $this->productAttributeExpander = $productAttributeExpander;
+        $this->productAttributeLocaleValidator = $productAttributeLocaleValidator;
+        $this->localeFacade = $localeFacade;
     }
 
     public function createProductAttribute(
@@ -77,7 +93,14 @@ class ProductAttributeCreator implements ProductAttributeCreatorInterface
             $restProductAttributesBackendAttributesTransfer,
             new ProductManagementAttributeTransfer(),
         );
-        $this->productAttributeExpander->expandProductManagementAttributeValueTransfersWithLocaleName($productManagementAttributeTransfer->getValues());
+        $localeTransfers = $this->localeFacade->getLocaleCollection();
+        $unknownLocaleNames = $this->productAttributeLocaleValidator->getUnknownLocaleNames($productManagementAttributeTransfer->getValues(), $localeTransfers);
+
+        if ($unknownLocaleNames !== []) {
+            return $this->productAttributeRestResponseBuilder->createLocaleNotFoundErrorsRestResponse($unknownLocaleNames);
+        }
+
+        $this->productAttributeExpander->expandProductManagementAttributeValueTransfersWithLocaleName($productManagementAttributeTransfer->getValues(), $localeTransfers);
 
         $productManagementAttributeTransfer = $this->productAttributeFacade->createProductManagementAttribute($productManagementAttributeTransfer);
         $this->productAttributeFacade->translateProductManagementAttribute($productManagementAttributeTransfer);

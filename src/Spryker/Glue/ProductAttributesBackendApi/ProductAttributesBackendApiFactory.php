@@ -22,6 +22,8 @@ use Spryker\Glue\ProductAttributesBackendApi\Processor\Reader\ProductAttributeRe
 use Spryker\Glue\ProductAttributesBackendApi\Processor\Reader\ProductAttributeReaderInterface;
 use Spryker\Glue\ProductAttributesBackendApi\Processor\Updater\ProductAttributeUpdater;
 use Spryker\Glue\ProductAttributesBackendApi\Processor\Updater\ProductAttributeUpdaterInterface;
+use Spryker\Glue\ProductAttributesBackendApi\Processor\Validator\ProductAttributeLocaleValidator;
+use Spryker\Glue\ProductAttributesBackendApi\Processor\Validator\ProductAttributeLocaleValidatorInterface;
 
 /**
  * @method \Spryker\Glue\ProductAttributesBackendApi\ProductAttributesBackendApiConfig getConfig()
@@ -36,6 +38,8 @@ class ProductAttributesBackendApiFactory extends AbstractBackendApiFactory
             $this->createProductAttributeMapper(),
             $this->createProductAttributeReader(),
             $this->createProductAttributeExpander(),
+            $this->createProductAttributeLocaleValidator(),
+            $this->getLocaleFacade(),
         );
     }
 
@@ -51,7 +55,12 @@ class ProductAttributesBackendApiFactory extends AbstractBackendApiFactory
 
     public function createProductAttributeExpander(): ProductAttributeExpanderInterface
     {
-        return new ProductAttributeExpander($this->getLocaleFacade());
+        return new ProductAttributeExpander();
+    }
+
+    public function createProductAttributeLocaleValidator(): ProductAttributeLocaleValidatorInterface
+    {
+        return new ProductAttributeLocaleValidator();
     }
 
     public function createProductAttributeUpdater(): ProductAttributeUpdaterInterface
@@ -62,6 +71,8 @@ class ProductAttributesBackendApiFactory extends AbstractBackendApiFactory
             $this->createProductAttributeMapper(),
             $this->createProductAttributeReader(),
             $this->createProductAttributeExpander(),
+            $this->createProductAttributeLocaleValidator(),
+            $this->getLocaleFacade(),
         );
     }
 

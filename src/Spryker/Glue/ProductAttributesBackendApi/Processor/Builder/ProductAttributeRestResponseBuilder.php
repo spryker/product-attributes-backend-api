@@ -97,4 +97,23 @@ class ProductAttributeRestResponseBuilder implements ProductAttributeRestRespons
                     ->setMessage(ProductAttributesBackendApiConfig::EXCEPTION_MESSAGE_PRODUCT_ATTRIBUTE_NOT_FOUND),
             );
     }
+
+    /**
+     * @param array<string> $localeNames
+     */
+    public function createLocaleNotFoundErrorsRestResponse(array $localeNames): GlueResponseTransfer
+    {
+        $glueResponseTransfer = (new GlueResponseTransfer())->setHttpStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        foreach ($localeNames as $localeName) {
+            $glueResponseTransfer->addError(
+                (new GlueErrorTransfer())
+                    ->setStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
+                    ->setCode(ProductAttributesBackendApiConfig::RESPONSE_CODE_LOCALE_NOT_FOUND)
+                    ->setMessage(sprintf(ProductAttributesBackendApiConfig::EXCEPTION_MESSAGE_LOCALE_NOT_FOUND, $localeName)),
+            );
+        }
+
+        return $glueResponseTransfer;
+    }
 }

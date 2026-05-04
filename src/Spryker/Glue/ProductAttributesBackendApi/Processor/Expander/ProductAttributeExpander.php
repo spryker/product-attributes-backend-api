@@ -9,29 +9,19 @@ namespace Spryker\Glue\ProductAttributesBackendApi\Processor\Expander;
 
 use ArrayObject;
 use Generated\Shared\Transfer\ProductManagementAttributeValueTransfer;
-use Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToLocaleFacadeInterface;
 
 class ProductAttributeExpander implements ProductAttributeExpanderInterface
 {
     /**
-     * @var \Spryker\Glue\ProductAttributesBackendApi\Dependency\Facade\ProductAttributesBackendApiToLocaleFacadeInterface
-     */
-    protected ProductAttributesBackendApiToLocaleFacadeInterface $localeFacade;
-
-    public function __construct(ProductAttributesBackendApiToLocaleFacadeInterface $localeFacade)
-    {
-        $this->localeFacade = $localeFacade;
-    }
-
-    /**
      * @param \ArrayObject<int, \Generated\Shared\Transfer\ProductManagementAttributeValueTransfer> $productManagementAttributeValueTransfers
+     * @param array<string, \Generated\Shared\Transfer\LocaleTransfer> $localeTransfers
      *
      * @return \ArrayObject<int, \Generated\Shared\Transfer\ProductManagementAttributeValueTransfer>
      */
     public function expandProductManagementAttributeValueTransfersWithLocaleName(
-        ArrayObject $productManagementAttributeValueTransfers
+        ArrayObject $productManagementAttributeValueTransfers,
+        array $localeTransfers,
     ): ArrayObject {
-        $localeTransfers = $this->localeFacade->getLocaleCollection();
         foreach ($productManagementAttributeValueTransfers as $productManagementAttributeValueTransfer) {
             $this->expandProductManagementAttributeValueTransferWithLocaleName($productManagementAttributeValueTransfer, $localeTransfers);
         }
@@ -47,11 +37,12 @@ class ProductAttributeExpander implements ProductAttributeExpanderInterface
      */
     protected function expandProductManagementAttributeValueTransferWithLocaleName(
         ProductManagementAttributeValueTransfer $productManagementAttributeValueTransfer,
-        array $localeTransfers
+        array $localeTransfers,
     ): ProductManagementAttributeValueTransfer {
         foreach ($productManagementAttributeValueTransfer->getLocalizedValues() as $productManagementAttributeValueTranslationTransfer) {
             $localeName = $productManagementAttributeValueTranslationTransfer->getLocaleName();
-            if (!$localeName) {
+
+            if (!$localeName || !isset($localeTransfers[$localeName])) {
                 continue;
             }
 

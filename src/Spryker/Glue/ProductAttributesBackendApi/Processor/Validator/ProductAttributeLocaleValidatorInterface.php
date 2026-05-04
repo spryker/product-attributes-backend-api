@@ -5,20 +5,17 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Glue\ProductAttributesBackendApi\Processor\Expander;
+namespace Spryker\Glue\ProductAttributesBackendApi\Processor\Validator;
 
 use ArrayObject;
 
-interface ProductAttributeExpanderInterface
+interface ProductAttributeLocaleValidatorInterface
 {
     /**
      * @param \ArrayObject<int, \Generated\Shared\Transfer\ProductManagementAttributeValueTransfer> $productManagementAttributeValueTransfers
      * @param array<string, \Generated\Shared\Transfer\LocaleTransfer> $localeTransfers
      *
-     * @return \ArrayObject<int, \Generated\Shared\Transfer\ProductManagementAttributeValueTransfer>
+     * @return array<string> Locale names present in the values that are not registered in the system
      */
-    public function expandProductManagementAttributeValueTransfersWithLocaleName(
-        ArrayObject $productManagementAttributeValueTransfers,
-        array $localeTransfers,
-    ): ArrayObject;
+    public function getUnknownLocaleNames(ArrayObject $productManagementAttributeValueTransfers, array $localeTransfers): array;
 }

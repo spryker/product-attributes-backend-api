@@ -26,4 +26,9 @@ interface ProductAttributeRestResponseBuilderInterface
     public function createProductAttributeKeyIsNotProvidedErrorRestResponse(): GlueResponseTransfer;
 
     public function createProductAttributeNotFoundErrorRestResponse(): GlueResponseTransfer;
+
+    /**
+     * @param array<string> $localeNames
+     */
+    public function createLocaleNotFoundErrorsRestResponse(array $localeNames): GlueResponseTransfer;
 }

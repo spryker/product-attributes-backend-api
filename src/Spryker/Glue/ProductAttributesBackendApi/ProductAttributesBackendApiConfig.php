@@ -83,6 +83,26 @@ class ProductAttributesBackendApiConfig extends AbstractBundleConfig
 
     /**
      * Specification:
+     * - Defines response code when a locale provided in localized values is not found in the system.
+     *
+     * @api
+     *
+     * @var string
+     */
+    public const RESPONSE_CODE_LOCALE_NOT_FOUND = '4205';
+
+    /**
+     * Specification:
+     * - Defines a message when a locale provided in localized values is not found in the system.
+     *
+     * @api
+     *
+     * @var string
+     */
+    public const EXCEPTION_MESSAGE_LOCALE_NOT_FOUND = 'Locale \'%s\' is not found.';
+
+    /**
+     * Specification:
      * - Defines a default limit for fetching product attribute.
      *
      * @api
